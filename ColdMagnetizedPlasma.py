@@ -206,7 +206,6 @@ def run_simulation(index, output_folder):
     check.add_task(0.5 *rq* (Er*Er+Ea*Ea+Ez*Ez + Br*Br+Ba*Ba + Bz*Bz + omega_pnsq*(V@V)),
                 name="u_total")
     
-    
     # S_r = Ea * np.conjugate(Bz) - Ez * np.conjugate(Ba)
     # S_a = Ez * np.conjugate(Br) - Er * np.conjugate(Bz)
     # check.add_task(S_r,layout='g', name="S_r")
@@ -240,43 +239,14 @@ def main():
         return 
         
     index = sys.argv[1] # Read index from command line
-    base_output_path = '/oscar/scratch/jlee1163/8x8_mesh_retry/'
+    
+    #Insert desired base output path here
+    base_output_path = '/your_output_path_folder/'
+
+    
     output_folder = f'{base_output_path}3d_1p2kG_2p5GHz_2e13_4cm_wave_{index}/'
     
     run_simulation(index, output_folder)
-
-
-    # indices = [str(i).zfill(2) for i in range(0,20)]   
-    # #base_output_path = '/jobtmp/xxiuhong/3d_14kG_1GHz/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_1GHz/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_14kG_245GHz_3density/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_245GHz_3density/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_14kG_245GHz_1density/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_14kG_1GHz_3density/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_1p2kG_1GHz_1density/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_1p2kG_1GHz_3density/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_1p2kG_2p45GHz_1density/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_1p2kG_2p45GHz_3density/'
-    # #base_output_path = '/jobtmp/xxiuhong/3d_1p2kG_2p5GHz_2e13_4cm_/'
-    # base_output_path = '/oscar/scratch/jlee1163/8x8_mesh_retry/'
-    
-    
-    # os.makedirs(base_output_path, exist_ok=True)
-    # for index in indices:
-    #     #output_folder = f'{base_output_path}3d_14kG_1GHz_S_128_{index}/'
-    #     #output_folder = f'{base_output_path}3d_1GHz_S_128_{index}/'
-    #     #output_folder = f'{base_output_path}3d_14kG_245GHz_3density_wave_{index}/'
-    #     #output_folder = f'{base_output_path}3d_245GHz_3density_S_128_{index}/'
-    #     #output_folder = f'{base_output_path}3d_14kG_245GHz_1density_S_128_{index}/'
-    #     #output_folder = f'{base_output_path}3d_14kG_1GHz_3density_wave_{index}/'
-    #     #output_folder = f'{base_output_path}3d_1p2kG_1GHz_1density_wave_{index}/'
-    #     #output_folder = f'{base_output_path}3d_1p2kG_1GHz_3density_wave_{index}/'
-    #     #output_folder = f'{base_output_path}3d_1p2kG_2p45GHz_1density_wave_{index}/'
-    #     #output_folder = f'{base_output_path}3d_1p2kG_2p45GHz_3density_wave_{index}/'
-    #     #output_folder = f'{base_output_path}3d_1p2kG_2p5GHz_1e13_4cm_wave_{index}/'
-    #     output_folder = f'{base_output_path}3d_1p2kG_2p5GHz_2e13_4cm_wave_{index}/'
-        
-    #     run_simulation(index, output_folder)
 
 if __name__ == "__main__":
     main()
