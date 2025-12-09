@@ -1,3 +1,6 @@
+### You may need to create a folder inside the folder you're saving all the data called '1p2kg'
+### Lines to add folder paths are Lines: 27, 298, 299, 301, 322, 324, 325, 326
+
 # Import necessary libraries
 from mpi4py import MPI
 import h5py
@@ -19,7 +22,9 @@ def process_and_extract_data(folder_number):
     #filename = f"/gpfs/home/xxiuhong/scratch/3d_12kG_245GH_3density/3d_245GH_3density_{folder_number}.h5"
     #filename = f"/gpfs/home/xxiuhong/scratch/3d_14kG_245GHz_3density/3d_14kG_245GHz_3density_{folder_number}.h5"
     #filename = "/gpfs/home/xxiuhong/scratch/1p2kG/3d_1p2kG_2p5GHz_1density_S_COV.h5"
-    filename = f"/oscar/scratch/jlee1163/8x8_mesh_retry/wave_output/3d_1p2kG_2p5GHz_2e13_4cm_wave_{folder_number}.h5"
+
+    ### Change Filepath Here!
+    filename = f"/path_to_folder_with_processed_data_from_data.py/3d_1p2kG_2p5GHz_2e13_4cm_wave_{folder_number}.h5"
     print(f"Attempting to open file: {filename}")
     os.utime(filename, (time.time(), time.time()))
     try:
@@ -288,11 +293,12 @@ def animation(S_arrays,rad_array,theta_array,COV_arrays,r_star):
     
     
 def main():
+
+    ### Paths to Saving Animation
+    ani1_path = '/folder_with_all_data/1p2kg/3d_1p2kG_2p5GHz_2e13_4cm_wave.mp4'
+    ani2_path ='/folder_with_all_data/1p2kg/3d_1p2kG_2p5GHz_2e13_4cm_cor.mp4'
     
-    ani1_path = '/oscar/scratch/jlee1163/8x8_mesh_retry/1p2kg/3d_1p2kG_2p5GHz_2e13_4cm_wave.mp4'
-    ani2_path ='/oscar/scratch/jlee1163/8x8_mesh_retry/1p2kg/3d_1p2kG_2p5GHz_2e13_4cm_cor.mp4'
-    
-    save_dir = "/oscar/scratch/jlee1163/8x8_mesh_retry/1p2kg/frames_data"
+    save_dir = "/folder_with_all_data/1p2kg/frames_data"
     os.makedirs(save_dir, exist_ok=True)
     index = [str(i).zfill(2) for i in range(0,19)]
     S = []
@@ -313,11 +319,11 @@ def main():
             r_star.append(results[4])
             frame_idx = int(ind)
             
-            np.save(f"/oscar/scratch/jlee1163/8x8_mesh_retry/1p2kg/frames_data/frame_{frame_idx:04d}.npy", results[0])
+            np.save(f"/folder_with_all_data/1p2kg/frames_data/frame_{frame_idx:04d}.npy", results[0])
             
-    np.save("/oscar/scratch/jlee1163/8x8_mesh_retry/1p2kg/rad_array.npy", r_array)
-    np.save("/oscar/scratch/jlee1163/8x8_mesh_retry/1p2kg/theta_array.npy", theta_array)
-    np.save("/oscar/scratch/jlee1163/8x8_mesh_retry/1p2kg/r_star.npy", results[4])
+    np.save("/folder_with_all_data/1p2kg/rad_array.npy", r_array)
+    np.save("/folder_with_all_data/1p2kg/theta_array.npy", theta_array)
+    np.save("/folder_with_all_data/1p2kg/r_star.npy", results[4])
     
     
     ani1,ani2 = animation(S,r_array,theta_array,COV,r_star)
