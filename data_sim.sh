@@ -3,8 +3,8 @@
 #SBATCH -t 24:00:00
 #SBATCH --mem=128G
 #SBATCH -J S_data
-#SBATCH --output=/oscar/scratch/jlee1163/8x8_mesh_retry/Script_Output/%A_%a.out
-#SBATCH --array=0-19 # Adjust this range according to how many simulation indices you have run in 3D_S.py
+#SBATCH --output=/path_to_where_you_want_output/%A_%a.out
+#SBATCH --array=0-19 # Adjust this range according to how many simulation indices you have run in ColdMagnetizedPlasma.py (same as num_points on line 36)
 
 module purge
 
@@ -16,4 +16,4 @@ conda activate dedalus3
 
 
 formatted_id=$SLURM_ARRAY_TASK_ID
-mpiexec  -n 10 python3 /users/jlee1163/GPP-LAPD-main-jonah/GPP-LAPD-main/data.py $formatted_id
+mpiexec  -n 10 python3 /path_to_your_data.py/data.py $formatted_id
