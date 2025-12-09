@@ -82,7 +82,9 @@ def run_simulation(index, output_folder):
     
     coords = d3.CartesianCoordinates('z','a','r')
     
-    dist = d3.Distributor(coords, mesh=(8,8),  dtype= np.complex128)
+    dist = d3.Distributor(coords, mesh=(8,8),  dtype= np.complex128
+
+    #r_left changes the radius of the annulus.                      
     r_left = 0.1  # 2 cm
     r_right = 1.0 # 10 cm 
     #r_left = 1.0  # 10 cm  
