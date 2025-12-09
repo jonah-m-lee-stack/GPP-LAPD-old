@@ -1,3 +1,5 @@
+## Spots to add your own filepaths are at Lines: 259, 261, 270
+
 from mpi4py import MPI
 import h5py
 import numpy as np
@@ -237,11 +239,6 @@ def create_animation(t_array, S, theta_array, rad_array, z_array, folder_number,
 def main():
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
-
-    #if len(sys.argv) != 2:
-        #if rank == 0:
-            #print("Usage: mpiexec -n <num_procs> python3 3D_S_DATA_MPI.py <z_number>")
-        #sys.exit(1)
         
     #z_number = sys.argv[1]
     z_number = 10
@@ -254,20 +251,14 @@ def main():
     # force two-digit format
     serial = f"{int(raw_serial):02d}"
     
-    folder_number = 00
-
-    #folder_name = f"3d_1p2kG_2p45GHz_1density_wave_{folder_number}"
-    #folder_path = f"/jobtmp/xxiuhong/3d_1p2kG_2p45GHz_1density/{folder_name}"
-    #output_path = '/gpfs/home/xxiuhong/scratch/1p2kG/3d_1p2kG_2p45GHz_1density_s.mp4'
-    #folder_name = f"3d_1p2kG_1GHz_1density_wave_{folder_number}"
-    #folder_path = f"/jobtmp/xxiuhong/3d_1p2kG_1GHz_1density/{folder_name}"
-    #output_path = '/gpfs/home/xxiuhong/scratch/1p2kG/3d_1p2kG_1GHz_1density_s.mp4'
-    
+    folder_number = 00   
     
     
     folder_name = f"3d_1p2kG_2p5GHz_2e13_4cm_wave_{serial}"
-    folder_path = f"/oscar/scratch/jlee1163/8x8_mesh_retry/{folder_name}"
-    output_filename = f"/oscar/scratch/jlee1163/8x8_mesh_retry/wave_output_with_energy/3d_1p2kG_2p5GHz_2e13_4cm_wave_{serial}.h5"
+    ### Change Path Here!
+    folder_path = f"/path_to_folder_with_simulation_output_from_ColdMagnetizedPlasma/{folder_name}"
+    ### Change Path Here!
+    output_filename = f"/path_to_where_you_want_processed_data/3d_1p2kG_2p5GHz_2e13_4cm_wave_{serial}.h5"
     
     result = process_and_extract_data(folder_number,folder_name,folder_path,z_number)
     
@@ -275,8 +266,8 @@ def main():
     if rank == 0:
         t_array, Ez, Bz, Er, Br, Ea, Ba, u_total_array, theta_array, rad_array, z_array = result
 
-        # (optional) save combined arrays to an .h5, as you already do
-        output_filename = f"/oscar/scratch/jlee1163/8x8_mesh_retry/wave_output_with_energy/3d_1p2kG_2p5GHz_2e13_4cm_wave_{serial}.h5"
+        # save combined arrays to an .h5
+        output_filename = f"/path_to_where_you_wnat_processed_data/3d_1p2kG_2p5GHz_2e13_4cm_wave_{serial}.h5"
         with h5py.File(output_filename, 'w') as hf:
             hf.create_dataset("time", data=t_array)
             #Want to see energy as well
@@ -293,7 +284,9 @@ def main():
 
         from matplotlib.animation import FFMpegWriter
         writer = FFMpegWriter(fps=15, metadata=dict(artist='GPP-LAPD'), bitrate=5000)
-        mp4_out = f"/oscar/scratch/jlee1163/8x8_mesh_retry/wave_animations_with_energy/3d_1p2kG_2p5GHz_2e13_4cm_wave_{serial}_Ez.mp4"
+
+        ### Change Path Here!
+        mp4_out = f"/path_to_where_you_want_to_save_animations/3d_1p2kG_2p5GHz_2e13_4cm_wave_{serial}_Ez.mp4"
         ani.save(mp4_out, writer=writer)
         print("Animation saved to:", mp4_out)
 
