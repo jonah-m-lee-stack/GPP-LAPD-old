@@ -6,4 +6,4 @@ I made a few modifications to the main() function as I was running into an Out o
 
 The original ReadMe (titled OldREADME.md) has more information regarding the parameters. The only additional information is that r_left determines the size of the annulus.
 
-As for the post processing scripts, some changes regarding output folders must be made, but I'll mark those spots with comments.
+As for the post processing scripts, some changes regarding output folders must be made, but I'll mark those spots with comments. I have added example batch scripts for those as well.
