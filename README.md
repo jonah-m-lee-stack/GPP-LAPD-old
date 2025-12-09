@@ -2,9 +2,13 @@ Script Info:
 
 ColdMagnetizedPlasma.py is the main simulation script. data.py and 3D_S_Coherence.py are scripts for post-processsing and analysis of the simulation data. The original scripts were written by HarryGX0331 on GitHub.
 
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
 Main Script to Modify:
 
 ColdMagnetizedPlasma.py is the main simulation script. It currently utilizes Dedalus3 and solves a set of equations related to plasma dynamics in cylindrical coordinates. However, there is an annulus, which affects the accuracy of results. If you could focus on modifying ColdMagnetizedPlasma.py, that would be amazing!
+
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 Information Regarding Simulation/Post-Processing:
 
