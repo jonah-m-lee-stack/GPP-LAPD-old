@@ -20,4 +20,4 @@ INDEX=$(printf "%02d" $SLURM_ARRAY_TASK_ID)
 
 echo "Starting simulation for array index: $INDEX (Task ID $SLURM_ARRAY_TASK_ID)"
 
-mpiexec -n 64 python3 /path_to_your_3D_S_Retry.py/3D_S_Retry.py $INDEX
+mpiexec -n 64 python3 /path_to_your_ColdMagnetizedPlasma.py/ColdMagnetizedPlasma.py $INDEX
